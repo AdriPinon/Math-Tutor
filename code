@@ -1,0 +1,229 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <iomanip>
+
+using namespace std;
+//functions
+void addition(int choice, string name);
+void subtraction(int choice, string name);
+void multiplication(int choice, string name);
+void division(int choice, string name);
+string displayMenu();
+int displayMenu1();
+bool isValid(int num, int min, int max);
+void quitProgram(int choice);
+
+int main()
+{
+    
+    string y;
+    string Y;
+    char r;
+    
+    do
+    {
+        
+    string name = displayMenu();
+    int choice = displayMenu1();
+
+    if (choice == 1)
+    {
+        addition(choice, name);
+    }
+    if (choice == 2)
+    {
+        subtraction(choice, name);
+    }
+    if(choice == 3)
+    {
+        multiplication(choice, name);
+    }
+    if(choice == 4 )
+    {
+        division(choice, name);
+    }
+    if(choice == 5)
+    {
+        quitProgram(choice);
+    }
+    cout << "\nWould you like to run the program again?Y/N" << endl;
+    cin >> r;
+    }while(r == 'y' || r == 'Y');
+    
+    return 0;
+}
+
+void addition(int choice, string name)
+{
+    const int min = 2;
+    const int max = 500;
+    int diff = max - min + 2;
+    int value = rand() % diff + min;
+    int addition2 = 1 + rand() % 99;
+    int addition3 = value + addition2;
+    int greatest = 3;
+    int least = 0;
+    
+    cout << "\nYou have chosen Addition!\n";
+    cout << "\nInput your answer\n";
+    cout << value << endl;
+    cout << "+" << addition2 << endl;
+    cout << "---------" << endl;
+    cin >> choice;
+    if (choice == addition3)
+    {
+    cout << "Congratulations, your answer is correct! :)" << endl;
+    }
+   else if (choice != addition3)
+    {
+        do
+        {
+        cout << "Incorrect, " << name << ". Keep praticing\n";
+        cout << "Please try again: " ;
+        cin >> choice;
+        least ++;
+        }while( least < greatest && choice != addition3);
+    }
+    
+}
+
+void subtraction(int choice, string name)
+{
+    const int min = 2;
+    const int max = 500;
+    int diff = max - min + 2;
+    int value = rand() % diff + min;
+    int subtraction2 = 1 + rand() % 500;
+    int subtraction3 = value - subtraction2;
+    int greatest = 3;
+    int least = 0;
+    
+    cout << "\nYou have chosen Subtraction!\n";
+    cout << value << endl;
+    cout << "-" << subtraction2 << endl;
+    cout << "---------" << endl;
+    cin >> choice;
+    if (choice == subtraction3)
+    {
+    cout << "\nCongratulations, your answer is correct! :)\n" << endl;
+    }
+    else if (choice != subtraction3)
+    {
+        do
+        {
+        cout << "Incorrect, " << name << ". Keep praticing\n";
+        cout << "Please try again: " ;
+        cin >> choice;
+        least ++;
+        }while( least < greatest && choice != subtraction3);
+    }
+}
+
+void multiplication(int choice, string name)
+{
+    const int xmin = 1;
+    const int xmax = 12;
+    int xdiff = xmax - xmin + 1;
+    int xvalue = rand() % xdiff + xmin;
+    int multiplication2 = 1 + rand() % 12;
+    int multiplication3 = xvalue * multiplication2;
+    int greatest = 3;
+    int least = 0;
+    
+    cout << "\nYou have chosen Multiplication!\n";
+    cout << xvalue << endl;
+    cout << "*" << multiplication2 << endl;
+    cout << "---------" << endl;
+    cin >> choice;
+    if (choice == multiplication3)
+    {
+    cout << "Congratulations, your answer is correct! :)" << endl;
+    }
+    else if (choice != multiplication3)
+    {
+        do
+        {
+        cout << "Incorrect, " << name << ". Keep praticing\n";
+        cout << "Please try again: " ;
+        cin >> choice;
+        least ++;
+        }while( least < greatest && choice != multiplication3);
+        
+    }
+}
+
+void division(int choice, string name)
+{
+    cout <<"\nYou have chosen Division!\n";
+    int addition2 = 1 + rand() % 999;
+    int divison2 = 1 + rand() % 9;
+    int greatest = 3;
+    int least = 0;
+    
+    while (addition2 % divison2 != 0)
+    {
+         divison2 = 1 + rand() % 9;
+    }
+    int divison3 = addition2 / divison2;
+    cout << addition2 << endl;
+    cout << "\\" << divison2 << endl;
+    cout << "---------" << endl;
+    cin >> choice;
+    if (choice == divison3)
+    {
+    cout << "Congratulations, your answer is correct! :)" << endl;
+    }
+    else if (choice != divison3)
+    {
+        do
+        {
+
+        cout << "Incorrect, " << name << ". Keep praticing\n";
+        cout << "Please try again: " ;
+        cin >> choice;
+        least ++;
+        }while( least < greatest && choice != divison3);
+    }
+}
+
+string displayMenu()
+{
+    string name;
+    
+    cout << "What is your name?\n";
+    getline(cin, name);
+    cout << "\nWelcome, " << name << " to Math Tutor!\n";
+    cout << "\nI will help you test your math skills\n";
+    return name;
+}
+
+int displayMenu1()
+{
+    int choice;
+    const string errorMSG= "Try again. Enter a valid choice:   ";
+    int min = 0, max = 6;
+    
+    cout << "\nPlease choose which number you would like to practice \n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Quit\n Choice: ";
+    cin >> choice;
+    
+    while(isValid(choice, min, max)) //while score is not valid
+    {
+        cout << errorMSG;
+        cin >> choice;
+    }
+    return choice;
+}
+
+bool isValid(int num, int min, int max)
+{
+    if(num > min || num < max)
+        return false;  // invalid data
+    else
+        return true;
+}
+
+void quitProgram(int choice)
+{
+    cout << "You have quit, see you later" << endl;
+}
